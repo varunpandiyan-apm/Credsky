@@ -1,0 +1,9 @@
+{
+  "name": "skycred-live-weather",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SKYCRED – Live Weather: a city-based current weather app powered by WeatherAPI.com",
+  "engines": {
+    "node": ">=18"
+  }
+}

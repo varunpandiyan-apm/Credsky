@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKYCRED – Live Weather</title>
+  <meta name="description" content="SKYCRED Live Weather — search any city and see current conditions, feels-like temperature, humidity, wind and UV at a glance." />
+  <meta name="theme-color" content="#0a0a0d" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌤️</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="brand">
+        <span class="brand-name">SKY<em>CRED</em></span>
+        <span class="brand-badge">Live Weather</span>
+      </div>
+      <span class="header-note">Current conditions, updated live</span>
+    </header>
+
+    <main>
+      <form class="search-bar" id="search-form" autocomplete="off">
+        <label class="visually-hidden" for="city-input">City name</label>
+        <input id="city-input" name="city" type="text" placeholder="Search any city — e.g. Mumbai, Tokyo, London" />
+        <button type="submit" id="search-btn">Search</button>
+      </form>
+
+      <div class="chips-wrap">
+        <span class="chips-label">Popular cities</span>
+        <div class="chips" id="chips"></div>
+      </div>
+
+      <section id="status" class="status" aria-live="polite"></section>
+
+      <div id="result" class="result" hidden>
+        <article class="card weather-card">
+          <div class="wc-top">
+            <div>
+              <h2 class="wc-city" id="loc-city">—</h2>
+              <p class="wc-region" id="loc-region">—</p>
+              <p class="wc-time" id="loc-time">—</p>
+            </div>
+            <div class="wc-emoji" id="cond-emoji" aria-hidden="true">🌤️</div>
+          </div>
+          <div class="wc-main">
+            <p class="wc-temp"><span id="temp-value">—</span><span class="wc-deg">°C</span></p>
+            <div class="wc-cond">
+              <p class="wc-cond-text" id="cond-text">—</p>
+              <p class="wc-feels" id="feels-like">—</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card insight-card">
+          <p class="insight-label" id="insight-label">—</p>
+          <p class="insight-text" id="insight-text">—</p>
+        </article>
+
+        <div class="metrics">
+          <div class="card metric-card">
+            <p class="metric-label">Humidity</p>
+            <p class="metric-value"><span id="m-humidity">—</span><span class="metric-unit">%</span></p>
+            <p class="metric-sub">Relative humidity</p>
+          </div>
+          <div class="card metric-card">
+            <p class="metric-label">Wind</p>
+            <p class="metric-value"><span id="m-wind">—</span><span class="metric-unit"> kph</span></p>
+            <p class="metric-sub">Speed</p>
+          </div>
+          <div class="card metric-card">
+            <p class="metric-label">UV Index</p>
+            <p class="metric-value"><span id="m-uv">—</span></p>
+            <p class="metric-sub" id="m-uv-sub">Exposure level</p>
+          </div>
+        </div>
+
+        <section class="card json-panel">
+          <div class="json-head">
+            <div class="tabs" role="tablist">
+              <button class="tab active" id="tab-formatted" type="button" role="tab" aria-selected="true">Formatted JSON</button>
+              <button class="tab" id="tab-raw" type="button" role="tab" aria-selected="false">Raw JSON</button>
+            </div>
+            <button class="copy-btn" id="copy-btn" type="button">Copy</button>
+          </div>
+          <pre class="json-pre" id="json-pre" tabindex="0">{}</pre>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Powered by <a href="https://www.weatherapi.com/" target="_blank" rel="noopener">WeatherAPI.com</a></p>
+    </footer>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>
